@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket", "SuperSocket\SuperSocket.csproj", "{8287DC4F-1937-4FB0-97DB-764E6CD40A47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.Domain", "SuperSocket.Domain\SuperSocket.Domain.csproj", "{6528522E-5695-468D-A583-1F3813130982}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.Persistent", "SuperSocket.Persistent\SuperSocket.Persistent.csproj", "{192133BE-B7B7-4363-A11E-C260ED32FA39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocket.Persistent.Tests", "SuperSocket.Persistent.Tests\SuperSocket.Persistent.Tests.csproj", "{4866C515-79B8-4C43-A27F-0571ABA1652B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8287DC4F-1937-4FB0-97DB-764E6CD40A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8287DC4F-1937-4FB0-97DB-764E6CD40A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8287DC4F-1937-4FB0-97DB-764E6CD40A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8287DC4F-1937-4FB0-97DB-764E6CD40A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6528522E-5695-468D-A583-1F3813130982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6528522E-5695-468D-A583-1F3813130982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6528522E-5695-468D-A583-1F3813130982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6528522E-5695-468D-A583-1F3813130982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192133BE-B7B7-4363-A11E-C260ED32FA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192133BE-B7B7-4363-A11E-C260ED32FA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192133BE-B7B7-4363-A11E-C260ED32FA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192133BE-B7B7-4363-A11E-C260ED32FA39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4866C515-79B8-4C43-A27F-0571ABA1652B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4866C515-79B8-4C43-A27F-0571ABA1652B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4866C515-79B8-4C43-A27F-0571ABA1652B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4866C515-79B8-4C43-A27F-0571ABA1652B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F765F942-C664-4E8F-ACF7-358FB8A606D7}
+	EndGlobalSection
+EndGlobal
