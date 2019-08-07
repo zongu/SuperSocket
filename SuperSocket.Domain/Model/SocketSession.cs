@@ -4,8 +4,18 @@ namespace SuperSocket.Domain.Model
     using System;
     using SuperSocket.SocketBase;
 
+    /// <summary>
+    /// 自定義Session內容
+    /// </summary>
     public class SocketSession : AppSession<SocketSession, RequestInfo>
     {
+        public int? MemberId { get; set; }
+
+        public bool AlreadyLoin
+        {
+            get => MemberId != null;
+        }
+
         /// <summary>
         /// 無法解析來自client需求
         /// </summary>

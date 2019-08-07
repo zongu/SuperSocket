@@ -32,7 +32,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.3.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.3\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.Facility.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,11 +58,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applibs\AutofacConfig.cs" />
+    <Compile Include="Applibs\ConfigHelper.cs" />
+    <Compile Include="Behavior\SocketServerBehavior.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="Command\SendCommand.cs" />
+    <Compile Include="Compoment\IProcessCompoment.cs" />
+    <Compile Include="Compoment\ServerProcessCompoment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SuperSocket.Domain\SuperSocket.Domain.csproj">
+      <Project>{9799AC29-30BD-45DC-B952-674B7F66E93B}</Project>
+      <Name>SuperSocket.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
