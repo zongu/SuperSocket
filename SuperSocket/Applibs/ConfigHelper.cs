@@ -3,8 +3,34 @@ namespace SuperSocket.Applibs
 {
     internal static class ConfigHelper
     {
-        public static int ServerSessionExpiredSeconds = 30;
+        /// <summary>
+        /// 定時刪沒數據傳送的連接
+        /// </summary>
+        public static int ClearIdleSessionInterval = 30;
 
-        public static int ServerRemoveExpiredInterval = 10;
+        /// <summary>
+        /// socket timeout時間
+        /// </summary>
+        public static int IdleSessionTimeOut = 5;
+
+        /// <summary>
+        /// 定時刪除尚未登入連接
+        /// </summary>
+        public static int RemoveExpiredInterval = 10;
+
+        /// <summary>
+        /// Socket連線IP
+        /// </summary>
+        public static string SocketIp = @"Any";
+
+        /// <summary>
+        /// Socket對外暴露Port
+        /// </summary>
+        public static int SocketPort = 3000;
+
+        /// <summary>
+        /// Socket最大連線數
+        /// </summary>
+        public static int SocketMaxConnectionNumber = 100;
     }
 }

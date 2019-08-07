@@ -20,9 +20,9 @@ namespace SuperSocket.Domain.Model
         public abstract void Broadcast(string message);
 
         /// <summary>
-        /// 移除過期跟尚未登入Client
+        /// 移除尚未登入Client
         /// </summary>
-        public abstract void RemoveExpiredAndNotRegisterSession();
+        public abstract void RemoveNotRegisterSession();
 
         /// <summary>
         /// 發訊給某人

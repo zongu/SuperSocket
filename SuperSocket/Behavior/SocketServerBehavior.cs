@@ -21,9 +21,9 @@ namespace SuperSocket.Behavior
             });
         }
 
-        public override void RemoveExpiredAndNotRegisterSession()
+        public override void RemoveNotRegisterSession()
         {
-            var expiredTime = DateTime.Now.AddSeconds(Applibs.ConfigHelper.ServerSessionExpiredSeconds);
+            var expiredTime = DateTime.Now.AddSeconds(Applibs.ConfigHelper.ClearIdleSessionInterval);
             var expiredSessons = this.GetAllSessions()
                 .Where(s => s.LastActiveTime < expiredTime || (!s.AlreadyLoin && s.StartTime < expiredTime));
 

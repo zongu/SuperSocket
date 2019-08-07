@@ -2,8 +2,11 @@
 namespace SuperSocket.Compoment
 {
     using System;
+    using System.Diagnostics;
+    using System.IO;
     using System.Timers;
     using SuperSocket.Behavior;
+    using SuperSocket.SocketBase.Config;
 
     public class ServerProcessCompoment : IProcessCompoment
     {
@@ -14,13 +17,26 @@ namespace SuperSocket.Compoment
         public ServerProcessCompoment()
         {
             this.server = new SocketServerBehavior();
+            this.server.Setup(new ServerConfig()
+            {
+                Name = Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName),
+                //// 定時刪沒數據傳送的連接
+                ClearIdleSession = true,
+                ClearIdleSessionInterval = Applibs.ConfigHelper.ClearIdleSessionInterval,
+                IdleSessionTimeOut = Applibs.ConfigHelper.IdleSessionTimeOut,
+                Ip = Applibs.ConfigHelper.SocketIp,
+                Port = Applibs.ConfigHelper.SocketPort,
+                MaxConnectionNumber = Applibs.ConfigHelper.SocketMaxConnectionNumber
+            });
+
+            this.timer = new Timer();
             this.timer.Elapsed += TimeEventHandler;
             this.timer.AutoReset = true;
-            this.timer.Interval = Applibs.ConfigHelper.ServerRemoveExpiredInterval * 1000;
+            this.timer.Interval = Applibs.ConfigHelper.RemoveExpiredInterval * 1000;
         }
 
         private void TimeEventHandler(object sender, ElapsedEventArgs e)
-            => this.server.RemoveExpiredAndNotRegisterSession();
+            => this.server.RemoveNotRegisterSession();
 
         public void Start()
         {
@@ -28,7 +44,7 @@ namespace SuperSocket.Compoment
             this.timer.Start();
 
             string str = Console.ReadLine();
-            while(str != "exit")
+            while (str != "exit")
             {
                 this.server.Broadcast(str);
                 str = Console.ReadLine();
