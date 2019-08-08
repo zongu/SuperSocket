@@ -64,6 +64,7 @@
     <Compile Include="Applibs\AutofacConfig.cs" />
     <Compile Include="Applibs\ConfigHelper.cs" />
     <Compile Include="Behavior\SocketServerBehavior.cs" />
+    <Compile Include="Command\HealthCheckCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\SendCommand.cs" />
     <Compile Include="Compoment\IProcessCompoment.cs" />

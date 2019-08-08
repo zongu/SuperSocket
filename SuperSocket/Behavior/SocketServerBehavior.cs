@@ -3,6 +3,7 @@ namespace SuperSocket.Behavior
 {
     using System;
     using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using Autofac;
     using SuperSocket.Domain.Model;
@@ -13,11 +14,12 @@ namespace SuperSocket.Behavior
         public override void Broadcast(string message)
         {
             var sessions = this.GetAllSessions().Where(s => s.AlreadyLoin);
+            var messageBytes = Encoding.UTF8.GetBytes(new BroadCastModel() { Message = message }.ToString());
 
             //// 平行廣播
             Parallel.ForEach(sessions, session =>
             {
-                session.Send(message);
+                session.Send(messageBytes, 0, messageBytes.Length);
             });
         }
 
@@ -37,10 +39,11 @@ namespace SuperSocket.Behavior
 
         public override void SendTo(int memberId, string message)
         {
+            var messageBytes = Encoding.UTF8.GetBytes(new SendToModel() { Message = message }.ToString());
             var session = this.GetAllSessions().FirstOrDefault(s => s.MemberId == memberId);
-            if(session != null)
+            if (session != null)
             {
-                session.Send(message);
+                session.Send(messageBytes, 0, messageBytes.Length);
             }
         }
 

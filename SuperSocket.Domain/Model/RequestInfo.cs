@@ -7,7 +7,7 @@ namespace SuperSocket.Domain.Model
 
     public class RequestInfo : IRequestInfo
     {
-        public RequestInfo(KeyType type, byte[] bodyBuffer)
+        public RequestInfo(ClientKeyType type, byte[] bodyBuffer)
         {
             Type = type;
             BodyBuffer = bodyBuffer;
@@ -18,7 +18,7 @@ namespace SuperSocket.Domain.Model
             get => $"{Type}";
         }
 
-        public KeyType Type { get; set; }
+        public ClientKeyType Type { get; set; }
 
         public byte[] BodyBuffer { get; set; }
 
@@ -31,32 +31,53 @@ namespace SuperSocket.Domain.Model
         }
     }
 
-    public enum KeyType
+    /// <summary>
+    /// 來自Client command
+    /// </summary>
+    public enum ClientKeyType
     {
         Login,
         Send,
         HealthCheck
     }
 
-    public class LoginModel
+    public class RequestModel
+    {
+        public override string ToString()
+            => JsonConvert.SerializeObject(this);
+    }
+
+    public class LoginModel : RequestModel
     {
         public int MemberId { get; set; }
-
-        public override string ToString()
-            => JsonConvert.SerializeObject(this);
     }
 
-    public class SendModel
+    public class SendModel : RequestModel
     {
         public string Message { get; set; }
-
-        public override string ToString()
-            => JsonConvert.SerializeObject(this);
     }
 
-    public class HealthCheckModel
+    public class HealthCheckModel : RequestModel
     {
-        public override string ToString()
-            => JsonConvert.SerializeObject(this);
+    }
+
+    /// <summary>
+    /// 來自Server command
+    /// </summary>
+    public enum ServerKeyType
+    {
+
+        BroadCast,
+        SendTo
+    }
+
+    public class BroadCastModel : RequestModel
+    {
+        public string Message;
+    }
+
+    public class SendToModel : RequestModel
+    {
+        public string Message;
     }
 }

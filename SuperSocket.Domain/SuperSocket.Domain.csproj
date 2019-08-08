@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\EnumExtension.cs" />
     <Compile Include="Model\ICommand.cs" />
     <Compile Include="Model\ISocketServerBehavior.cs" />
     <Compile Include="Model\ReceiveFilter.cs" />
