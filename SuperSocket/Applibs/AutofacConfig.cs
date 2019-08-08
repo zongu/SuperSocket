@@ -29,16 +29,30 @@ namespace SuperSocket.Applibs
 
             var asm = Assembly.GetExecutingAssembly();
 
+            //// Client Command
             builder.RegisterType<LoginCommand>()
-                .Keyed<ICommand>(ClientKeyType.Login)
+                .Keyed<IClientCommand>(KeyType.Login)
                 .SingleInstance();
 
             builder.RegisterType<SendCommand>()
-                .Keyed<ICommand>(ClientKeyType.Send)
+                .Keyed<IClientCommand>(KeyType.Send)
                 .SingleInstance();
 
             builder.RegisterType<HealthCheckCommand>()
-                .Keyed<ICommand>(ClientKeyType.HealthCheck)
+                .Keyed<IClientCommand>(KeyType.HealthCheck)
+                .SingleInstance();
+
+            //// Server Command
+            builder.RegisterType<BroadCastCommand>()
+                .Keyed<IServerCommand>(KeyType.BroadCast)
+                .SingleInstance();
+
+            builder.RegisterType<SendToCommand>()
+                .Keyed<IServerCommand>(KeyType.SendTo)
+                .SingleInstance();
+
+            builder.RegisterType<LoginSuccessCommand>()
+                .Keyed<IServerCommand>(KeyType.LoginSuccess)
                 .SingleInstance();
 
             container = builder.Build();

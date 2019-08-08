@@ -21,8 +21,8 @@ namespace SuperSocket.Compoment
             {
                 Name = Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName),
                 //// 定時刪沒數據傳送的連接
-                ClearIdleSession = true,
-                ClearIdleSessionInterval = Applibs.ConfigHelper.ClearIdleSessionInterval,
+                ClearIdleSession = false,
+                //ClearIdleSessionInterval = Applibs.ConfigHelper.ClearIdleSessionInterval,
                 IdleSessionTimeOut = Applibs.ConfigHelper.IdleSessionTimeOut,
                 Ip = Applibs.ConfigHelper.SocketIp,
                 Port = Applibs.ConfigHelper.SocketPort,
@@ -41,7 +41,7 @@ namespace SuperSocket.Compoment
         public void Start()
         {
             this.server.Start();
-            this.timer.Start();
+            //this.timer.Start();
 
             string str = Console.ReadLine();
             while (str != "exit")
@@ -53,8 +53,8 @@ namespace SuperSocket.Compoment
 
         public void Stop()
         {
-            this.timer.Stop();
-            this.timer.Dispose();
+            //this.timer.Stop();
+            //this.timer.Dispose();
             this.server.Stop();
             this.server.Dispose();
         }

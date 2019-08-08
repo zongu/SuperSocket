@@ -32,5 +32,15 @@ namespace SuperSocket.Applibs
         /// Socket最大連線數
         /// </summary>
         public static int SocketMaxConnectionNumber = 100;
+
+        /// <summary>
+        /// Client發送心跳包頻率
+        /// </summary>
+        public static int HealthCheckIntervalSeconds = 20;
+
+        /// <summary>
+        /// Socket Server Address
+        /// </summary>
+        public static string SocketServerAddress = @"ws://localhost:3000";
     }
 }

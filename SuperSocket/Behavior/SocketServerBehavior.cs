@@ -3,7 +3,6 @@ namespace SuperSocket.Behavior
 {
     using System;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using Autofac;
     using SuperSocket.Domain.Model;
@@ -14,7 +13,7 @@ namespace SuperSocket.Behavior
         public override void Broadcast(string message)
         {
             var sessions = this.GetAllSessions().Where(s => s.AlreadyLoin);
-            var messageBytes = Encoding.UTF8.GetBytes(new BroadCastModel() { Message = message }.ToString());
+            var messageBytes = KeyType.BroadCast.GetRequestData(new BroadCastModel() { Message = message });
 
             //// 平行廣播
             Parallel.ForEach(sessions, session =>
@@ -39,7 +38,7 @@ namespace SuperSocket.Behavior
 
         public override void SendTo(int memberId, string message)
         {
-            var messageBytes = Encoding.UTF8.GetBytes(new SendToModel() { Message = message }.ToString());
+            var messageBytes = KeyType.SendTo.GetRequestData(new SendToModel() { Message = message });
             var session = this.GetAllSessions().FirstOrDefault(s => s.MemberId == memberId);
             if (session != null)
             {
@@ -47,26 +46,37 @@ namespace SuperSocket.Behavior
             }
         }
 
-        protected override void OnClosed(SocketSession session, CloseReason value)
-        {
+        protected override void ServerOnClosed(SocketSession session, CloseReason value)
+        {   
             Console.WriteLine($"SessionId:{session.SessionID} MemberId:{session.MemberId} Closed-{value}");
         }
 
-        protected override void OnConnected(SocketSession session)
-        {
+        protected override void ServerOnConnected(SocketSession session)
+        {   
             Console.WriteLine($"SessionId:{session.SessionID} Connected");
         }
 
-        protected override void OnRequested(SocketSession session, RequestInfo requestInfo)
+        protected override void ServerOnRequested(SocketSession session, RequestInfo requestInfo)
         {
             using (var scope = Applibs.AutofacConfig.Container.BeginLifetimeScope())
             {
-                var cmd = scope.ResolveKeyed<ICommand>(requestInfo.Type);
-                var result = cmd.Excute(session, requestInfo);
-                if (result.Item1 != null)
+                try
                 {
-                    Console.WriteLine($"Command:{requestInfo.Type} Content:{requestInfo.Body} Execute Fail:{result.Item1.Message}");
+                    var cmd = scope.ResolveKeyed<IClientCommand>(requestInfo.Type);
+                    var result = cmd.Excute(session, requestInfo);
+                    if (result.Item1 != null)
+                    {
+                        Console.WriteLine($"Command:{requestInfo.Type} Content:{requestInfo.Body} Execute Fail:{result.Item1.Message}");
+                    }
                 }
+                catch (Autofac.Core.Registration.ComponentNotRegisteredException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"OnRequested Exception:{ex.Message}");
+                }
+
             }
         }
     }

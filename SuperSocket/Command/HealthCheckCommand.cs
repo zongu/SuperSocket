@@ -4,7 +4,7 @@ namespace SuperSocket.Command
     using System;
     using SuperSocket.Domain.Model;
 
-    public class HealthCheckCommand : ICommand
+    public class HealthCheckCommand : IClientCommand
     {
         public Tuple<Exception> Excute(SocketSession session, RequestInfo requestInfo)
         {

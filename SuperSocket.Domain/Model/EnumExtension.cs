@@ -7,7 +7,7 @@ namespace SuperSocket.Domain.Model
 
     public static class EnumExtension
     {
-        public static byte[] GetRequestData(this ClientKeyType type, RequestModel request)
+        public static byte[] GetRequestData(this KeyType type, RequestModel request)
         {
             var byteList = new List<byte>();
             //// ushort 2個字節
